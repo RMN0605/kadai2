@@ -44,11 +44,18 @@ class Vehicle : public Object
 public:
     virtual float SpeedUp(float nowSpeed)
     {
-        nowSpeed += Speed;
-        return nowSpeed;
-
+        speed += nowSpeed;
+        printf("%f\n", speed);
+        return speed;
     };
-    float Speed = 1.0f;
+    virtual float Accel(float nowAccel)
+    {
+        accel += nowAccel;
+        printf("%f\n", speed);
+        return accel;
+    }
+    float speed = 0;
+    float accel = 0;
 private:
 
 };
@@ -57,18 +64,22 @@ class Car :public Vehicle
 {
 public:
 
-    float SpeedUP()
+    virtual float SetSpeed(float distance)
     {
-        speed = SpeedUp(speed);
-    };
+        speed = distance;
+        return speed;
+    }
+    virtual float SetAccel(float nowAccel)
+    {
+        accel = nowAccel;
+        return speed;
+    }
 
-private:
-    float speed = 0;
-    float s_down = 2.0f;
 };
 int main()
 {
     Car car;
-
-    
+    car.SpeedUp(1);
+    car.Accel(1);
+    car.SetAccel(1);
 }
