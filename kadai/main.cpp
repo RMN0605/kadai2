@@ -23,65 +23,55 @@ Vehicleクラスを継承したクラス
 SpeedUpとSpeedDownをここでCar用に実装してください。
 */
 class Object
-{   
+{
 public:
-    virtual void Update(float nowSpeed)
+    float x = 0;
+    float y = 0;
+    float z = 0;
+
+    virtual void Update()
     {
-        x += nowSpeed;
         printf("x = %f", x);
         printf("y = %f", y);
         printf("z = %f", z);
     }
-private:
 
-    float x = 0;
-    float y = 0;
-    float z = 0;
 };
 
 class Vehicle : public Object
 {
 public:
-    virtual float SpeedUp(float nowSpeed)
+    virtual float SpeedUp()
     {
-        speed += nowSpeed;
+        speed += accel;
         return speed;
     };
-    virtual float Accel(float nowAccel)
+    virtual void Update()
     {
-        accel += nowAccel;
+        x += speed;
         printf("%f\n", speed);
-        return accel;
     }
+
     float speed = 0;
     float accel = 0;
-private:
-
 };
 
 class Car :public Vehicle
 {
 public:
-
-    virtual float SetSpeed(float distance)
+    Car()
     {
-        speed = distance;
-        return speed;
+        speed = 0;
+        accel = 1;
     }
-    virtual float SetAccel(float nowAccel)
-    {
-        accel = nowAccel;
-        return speed;
-    }
-
 };
 int main()
 {
     Car car;
-    car.SetAccel(1);
+
     for (int i = 0; i < 100; i++)
     {
-        car.SpeedUp(1);
-        car.Accel(1);
+        car.SpeedUp();
+        car.Update();
     }
 }
