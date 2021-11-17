@@ -45,7 +45,6 @@ public:
     virtual float SpeedUp(float nowSpeed)
     {
         speed += nowSpeed;
-        printf("%f\n", speed);
         return speed;
     };
     virtual float Accel(float nowAccel)
@@ -79,7 +78,10 @@ public:
 int main()
 {
     Car car;
-    car.SpeedUp(1);
-    car.Accel(1);
     car.SetAccel(1);
+    for (int i = 0; i < 100; i++)
+    {
+        car.SpeedUp(1);
+        car.Accel(1);
+    }
 }
